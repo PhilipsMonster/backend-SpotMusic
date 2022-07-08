@@ -42,7 +42,7 @@ jobs:
 #          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 #        run: heroku container:login
 
-      - name: Google Cloud Plataform Login 3
+      - name: Google Cloud Plataform Login 4
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: | 
