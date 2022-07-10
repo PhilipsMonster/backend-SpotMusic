@@ -32,18 +32,21 @@ def open_connection():
 
 def get_songs():
     print ('passei aqui 1')
-    conn = open_connection()
+    #conn = open_connection()
     print ('passei aqui 2')
-    with conn.cursor() as cursor:
-        print ('passei aqui 3')
-        result = cursor.execute('SELECT * FROM songs;')
-        songs = cursor.fetchall()
-        if result > 0:
-           got_songs = jsonify(songs)
+    #with conn.cursor() as cursor:
+    #    print ('passei aqui 3')
+    #    result = cursor.execute('SELECT * FROM songs;')
+    #    songs = cursor.fetchall()
+    #    if result > 0:
+    #       got_songs = jsonify(songs)
 
-        else:
-            got_songs = 'Nenhuma Musica Cadastrada na Playlist'
+    #    else:
+    #        got_songs = 'Nenhuma Musica Cadastrada na Playlist'
 
-    conn.close()
+    # conn.close()
 
-    return got_songs
+    # return got_songs
+
+    retorno = 'Passei aqui 3'
+    return retorno
