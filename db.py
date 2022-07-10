@@ -12,18 +12,13 @@ db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
 def open_connection():
     try:
         
-        if db_connection_name:
             print ('db connection')
             unix_socket = '/cloudsql/{}'.format(db_connection_name)
             conn = pymysql.connect(user=db_user, password=db_password,
                                 unix_socket=unix_socket, db=db_name,
                                 cursorclass=pymysql.cursors.DictCursor
                                 )
-            print ('tchau')
-        else:
-            print ('oi')
-            conn = pymysql.connect(user=db_user, password=db_password,
-                                host=db_local_host, db=db_name,cursorclass=pymysql.cursors.DictCursor)
+            print ('tchau')       
 
     except pymysql.MySQLError as e:
         print(e)
@@ -31,22 +26,16 @@ def open_connection():
     return conn
 
 def get_songs():
-    print ('passei aqui 1')
-    #conn = open_connection()
-    print ('passei aqui 2')
-    #with conn.cursor() as cursor:
-    #    print ('passei aqui 3')
-    #    result = cursor.execute('SELECT * FROM songs;')
-    #    songs = cursor.fetchall()
-    #    if result > 0:
-    #       got_songs = jsonify(songs)
+    conn = open_connection()
+    with conn.cursor() as cursor:
+        result = cursor.execute('SELECT * FROM songs;')
+        songs = cursor.fetchall()
+        if result > 0:
+           got_songs = jsonify(songs)
 
-    #    else:
-    #        got_songs = 'Nenhuma Musica Cadastrada na Playlist'
+        else:
+            got_songs = 'Nenhuma Musica Cadastrada na Playlist'
 
-    # conn.close()
+    conn.close()
 
-    # return got_songs
-
-    retorno = 'Passei aqui 3'
-    return retorno
+    return got_songs
